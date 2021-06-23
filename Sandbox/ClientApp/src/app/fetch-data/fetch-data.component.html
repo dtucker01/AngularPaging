@@ -1,0 +1,45 @@
+<div class="row">
+  <div class="col-8 mx-auto">
+
+    <div class="form-group form-row">
+      <h3>Fetch Data From API With Paging</h3>
+      <label for="searchText" class="col-form-label col-lg-3"></label>
+      <div class="col-lg-5">
+        <div class="input-group">
+          <input type="text" class="form-control" placeholder="Search By Last Name" id="searchText" name="searchText" [(ngModel)]="searchText" #searchTextFocus />
+          <div class="input-group-append" (click)="onSearchClick()">
+            <span class="input-group-text"><i class="fa fa-search"></i></span>
+          </div>
+        </div>
+      </div>
+      &nbsp;&nbsp;&nbsp;
+    </div>
+
+  </div>
+
+
+  <div class="col-md-5 mx-auto">
+    <table class="table">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>First Name</th>
+          <th>Last Name</th>
+          <th>Email</th>
+          <th>Gender</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let member of members | paginate: config; let i = index">
+          <td>{{member.id}}</td>
+          <td>{{member.first_name}}</td>
+          <td>{{member.last_name}}</td>
+          <td>{{member.email}}</td>
+          <td>{{member.gender}}</td>
+        </tr>
+      </tbody>
+    </table>
+    <pagination-controls (pageChange)="pageChanged($event)"></pagination-controls>
+  </div>
+
+</div>
